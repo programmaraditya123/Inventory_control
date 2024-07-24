@@ -121,3 +121,11 @@ td{
   text-decoration: none;
   padding: 3px;
 }
+
+
+/* ****************select box *************** */
+ 
+select#component {
+  font-size: 18px;
+  padding: inherit;
+}

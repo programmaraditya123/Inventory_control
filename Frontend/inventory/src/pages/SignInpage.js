@@ -6,7 +6,7 @@ const SignInpage = () => {
   const navigate = useNavigate();
   const[email,setEmail] = useState("");
   const[password,setPassword] = useState("");
-  //const [auth,setAuth] = useState("");
+  const [auth,setAuth] = useState("");
 
   //default axios
   //axios.defaults.headers.common["Authorization"] = auth?.token;
@@ -22,12 +22,12 @@ const SignInpage = () => {
       console.log("11111111111111",user);
 
       if(user && user.data && user.data.token){
-        console.log("8888888888888",user.data.token)
-        //setAuth({token:user.data.token})
+        // console.log("8888888888888",user.data.token)
+        // setAuth({token:user.data.token})
         //setAuth({token:`Bearer ${token}`})
         localStorage.setItem('auth',JSON.stringify(user.data.token));
         alert("Loggin Successfully");
-        navigate("/")
+        window.location.href = '/'; 
       } else {
         alert("Failed to login");
       }
@@ -42,7 +42,8 @@ const SignInpage = () => {
   //   const data = localStorage.getItem('auth');
   //   if(data){
   //     const parseData = JSON.parse(data);
-  //     setAuth({token:user.data.token});
+  //     //setAuth(parseData);
+  //     //setAuth({token:user.data.token});
   //     //axios.defaults.headers.common["Authorization"] = `Bearer ${parseData}`;
   //     console.log("222222222222",data)
   //   }

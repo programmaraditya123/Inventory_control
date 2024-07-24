@@ -1,6 +1,7 @@
 const { comparePassword, hashPassword } = require('../helpers/authHelper');
 const AdminMidel = require('../Models/AdminMidel');
 const jwt = require('jsonwebtoken');
+const ComponentModel = require('../Models/ComponentModel');
 
 
 const homePageController = async (req,res) => {
@@ -119,5 +120,38 @@ const signinUserController = async (req,res) => {
     }
 };
 
+const generateQrController = async (req,res) => {
+    try {
+        const {Part,DateReceived,Receivednumber} = req.body;
+        
+        console.log("++++++++++++++",req.body);
 
-module.exports = {homePageController,registerUserController,signinUserController};
+        if(!Part){
+            return res.send("Component name is Required");
+        }
+        if(!DateReceived){
+            return res.send("date of Received is Required");
+        }
+        if(!Receivednumber){
+        return res.send("Quantity is Required")
+        }
+
+        //sav the data
+        const data = await new ComponentModel({Part,DateReceived,Receivednumber}).save();
+        res.status(200).send({
+            success:true,
+            message:'Data Edited Successfully',
+            data
+        })
+
+
+        
+    } catch (error) {
+        console.log(error);
+        
+        
+    }
+};
+
+
+module.exports = {homePageController,registerUserController,signinUserController,generateQrController};
