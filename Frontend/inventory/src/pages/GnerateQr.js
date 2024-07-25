@@ -32,11 +32,11 @@ const GnerateQr = () => {
         
         console.log("66666666666666666666",data)
 
-      if(data.statusCode === 200) {
+      if(data.status === 200) {
         alert("Component Received");
         navigate("/")
-      } else if(data.data.status === "error") {
-        alert("Failed in rceiving component");
+      } else if(data.status === 201) {
+        alert("You have to login");
         navigate("/signin")
       }
       
@@ -75,6 +75,7 @@ const GnerateQr = () => {
             <Link to="/register">Register here</Link></p>
         </div> */}
       </div> 
+       
       
     </>
   )

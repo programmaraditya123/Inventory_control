@@ -1,11 +1,28 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 //import logo from '../../public/images/logo.png';
+import axios from 'axios';
 
 
 const LandingPage = () => {
+  const [components,setComponents] = useState([]);
+  const getComponents = async () => {
+    try {
+      const {data} = await axios.get("http://localhost:8080/app/v1/auth/getcomponents");
+      setComponents(data);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  };
+  useEffect(() => {
+    getComponents();
+  },[])
   return (
+    
     <>
+    <div>hello,{components?.Receivednumber}</div>
     <table>
   <tbody><tr>
       <th>Name</th>

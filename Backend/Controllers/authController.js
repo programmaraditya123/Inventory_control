@@ -153,5 +153,27 @@ const generateQrController = async (req,res) => {
     }
 };
 
+const allComponentsController = async (req,res) => {
+    //console.log("headers",req.headers);
+    //console.log("BODYYYYYYYYYYYYYYY",req.body)
+    try {
+        const components = await ComponentModel.find({}).sort({createdAt:-1});
+        res.status(200).send({
+            success:true,
+            totalCount:components.length,
+            message:"All components",
+            components
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success:false,
+            message:'error in getting products',
+            error:error.message,
+        })
+        
+    }
+};
 
-module.exports = {homePageController,registerUserController,signinUserController,generateQrController};
+
+module.exports = {homePageController,registerUserController,signinUserController,generateQrController,allComponentsController};

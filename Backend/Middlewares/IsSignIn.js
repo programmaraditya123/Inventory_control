@@ -9,9 +9,9 @@ const IsSignIn = (req, res, next) => {
     //token = token.slice(7).trim();
   }
   //   const tokenSecret = token.split(" ")[1];
-
+  tokenSecret = JSON.parse(tokenSecret);
   console.log(tokenSecret,"......");
-  if (tokenSecret??null ) {
+  if(tokenSecret === null ) {
     console.log("Invalid authorization");
     res.status(201).json({ status:"error",message: "Token is not present" });
     return;
@@ -26,7 +26,7 @@ const IsSignIn = (req, res, next) => {
   console.log("+++++++++",tokenSecret)
 
   try {
-    const decode = jwt.verify(JSON.parse(tokenSecret), "aditya");
+    const decode = jwt.verify(tokenSecret, "aditya");
     console.log("1111111111111111111111",decode)
     //decode = req.user;
     req.user = decode;
