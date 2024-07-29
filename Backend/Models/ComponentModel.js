@@ -29,7 +29,11 @@ const ComponentSchema = new mongoose.Schema({
     },
     BalanceItem:{
         type:Number,
-         
+        
+    },
+    status:{
+        type:String,
+        default:'Pending'
     },
     uniqueQR:{
         data:Buffer,

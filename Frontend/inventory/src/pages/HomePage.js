@@ -39,7 +39,7 @@ const HomePage = () => {
           <Link to="/generateqr" className="link">
             Generate QR code
           </Link>
-          <Link className="link">Scan QR code</Link>
+          <Link to="/scanqr" className="link">Scan QR code</Link>
         </div>
         <div className="loginRegister">
           {token ? (

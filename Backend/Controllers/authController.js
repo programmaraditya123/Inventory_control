@@ -176,4 +176,75 @@ const allComponentsController = async (req,res) => {
 };
 
 
-module.exports = {homePageController,registerUserController,signinUserController,generateQrController,allComponentsController};
+
+
+const deleteComponentController = async (req,res) => {
+    try {
+        const {id} = req.params;
+        await ComponentModel.findByIdAndDelete({_id:id})
+        res.status(200).send({
+            success:true,
+            message:'Component deleted Successfully'
+        })
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success:false,
+            message:'error in deleting product',
+            error:error.message,
+        })
+        
+    }
+};
+
+
+
+const updateComponentController = async (req,res) => {
+    try {
+        const {id} = req.params;
+        console.log(id,"0000000000000");
+        const {Part,DateReceived,Receivednumber} = req.body;
+        const component = await ComponentModel.findByIdAndUpdate({_id:id},{Part,DateReceived,Receivednumber},{new:true});
+        res.status(200).send({
+            success:true,
+            message:'Component updated Successfully',
+            component
+        })
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success:false,
+            message:'error in updating product',
+            error:error.message,
+        })
+        
+    }
+};
+
+
+const componentByIDController = async (req,res) => {
+    try {
+        const {id} = req.params;
+        const component = await ComponentModel.findById({_id:id});
+        res.status(200).send({
+            success:true,
+            message:'Component Found Successfully',
+            component
+        })
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success:false,
+            message:'error in getting product',
+            error:error.message,
+        })
+        
+    }
+};
+
+
+module.exports = {homePageController,registerUserController,signinUserController,generateQrController,
+    allComponentsController,deleteComponentController,updateComponentController,componentByIDController};

@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
+//import QRCode from 'react-qr-code';
 
 const GnerateQr = () => {
   const [Part,setPart] = useState('');
@@ -30,9 +31,10 @@ const GnerateQr = () => {
         }
       );
         
-        console.log("66666666666666666666",data)
-
+        console.log("66666666666666666666",data.data.data._id)
+         
       if(data.status === 200) {
+        //function for qr code generation
         alert("Component Received");
         navigate("/")
       } else if(data.status === 201) {
@@ -46,6 +48,8 @@ const GnerateQr = () => {
     }
   };
 
+
+  
 
 
   return (

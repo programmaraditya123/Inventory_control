@@ -1,5 +1,5 @@
 const express = require('express');
-const {homePageController,registerUserController, signinUserController, generateQrController, allComponentsController} = require('../Controllers/authController');
+const {homePageController,registerUserController, signinUserController, generateQrController, allComponentsController, deleteComponentController, updateComponentController, componentByIDController} = require('../Controllers/authController');
 const IsSignIn = require('../Middlewares/IsSignIn');
 
 //router object
@@ -21,5 +21,14 @@ router.post('/generateqr',IsSignIn, generateQrController);
 
 //get all components
 router.get('/getcomponents',allComponentsController);
+
+//delete component
+router.delete('/delete/:id',deleteComponentController);
+
+//update component
+router.put('/update/:id',updateComponentController);
+
+//get component by id
+router.get('/getcomp/:id',componentByIDController);
 
 module.exports = router;

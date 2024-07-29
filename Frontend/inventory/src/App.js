@@ -6,6 +6,7 @@ import Registerpage from "./pages/Registerpage";
 import LandingPage from "./pages/LandingPage";
 import Edit from "./pages/Edit";
 import GnerateQr from "./pages/GnerateQr";
+import ScanQr from "./pages/ScanQr";
  
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
       <Route path="/" element={<LandingPage/>}/>
       <Route path="/signin" element={<SignInpage/>}/>
       <Route path="/register" element={<Registerpage/>}/>
-      <Route path="/edit" element={<Edit/>}/>
+      <Route path="/edit/:productId" element={<Edit/>}/>
       <Route path="/generateqr" element={<GnerateQr/>}/>
+      <Route path="/scanqr" element={<ScanQr/>}/>
     </Routes>
     
        
