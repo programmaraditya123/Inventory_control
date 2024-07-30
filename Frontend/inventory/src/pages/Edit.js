@@ -8,6 +8,7 @@ const Edit = () => {
   const [Part,setPart] = useState('');
   const [DateReceived, setDateReceived] = useState('');
   const [Receivednumber, setReceivednumber] = useState('');
+  const [dispatchNumber,setDispatchednumber] = useState('');
   const [data,setData] = useState('');
   const navigate = useNavigate();
 
@@ -50,12 +51,14 @@ const Edit = () => {
   // };
 
    const getComp = async () =>{
+    
     try {
       const {data} = await axios.get(`http://localhost:8080/app/v1/auth/getcomp/${params.productId}`);
       //console.log(data);
       setPart(data.component.Part);
       setDateReceived(data.component.DateReceived);
       setReceivednumber(data.component.Receivednumber);
+      setDispatchednumber(data.component.Dispatchednumber);
       setData(data);
       
     } catch (error) {
@@ -63,6 +66,8 @@ const Edit = () => {
       
     }
    };
+
+
    useEffect(() => {
     getComp();
    },[])
@@ -78,15 +83,25 @@ const Edit = () => {
       // formData.append('Receivednumber', Receivednumber);
       // console.log(formData);
 
-      const {data} = await axios.put(`http://localhost:8080/app/v1/auth/update/${params.productId}`,{Part,DateReceived,Receivednumber});
-      //console.log(data,"----------------------------------");
-      if(data){
-        alert("Data Updated Successfully");
-        navigate("/")
-      }else{
-        alert("Failed to update components");
+      if(Receivednumber >= dispatchNumber )
+        {const {data} = axios.put(`http://localhost:8080/app/v1/auth/update/${params.productId}`,{Part,DateReceived,Receivednumber});
+      console.log(data,"----------------------------------");
+      alert("Data Updated Successfully");
+      
+      navigate("/");
+    }
+      // if(data.component.Receivednumber < data.component.Dispatchednumber){
+      //   alert("The dispatch number is less than Received number");
+      //   navigate("/");
+      // }
+      else{
+        alert("The dispatch number is less than Received number");
         navigate("/")
       }
+      // }else{
+      //   alert("Failed to update components");
+      //   navigate("/")
+      // }
       
     } catch (error) {
       console.log(error);

@@ -246,5 +246,32 @@ const componentByIDController = async (req,res) => {
 };
 
 
+const dispatchComponentController = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const {Receivednumber,DateDispatched,Dispatchednumber,BalanceItem,status} = req.body;
+        const disp = await ComponentModel.findByIdAndUpdate({_id:id}, {
+            $set: { DateDispatched },
+            $inc: { Dispatchednumber: 1 }
+          } ,{new:true})
+        res.status(200).send({
+            success:true,
+            message:'Component Dispatched Successfully',
+            disp
+        })
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success:false,
+            message:'error in dispatching product',
+            error:error.message,
+        })
+        
+    }
+}
+
+
 module.exports = {homePageController,registerUserController,signinUserController,generateQrController,
-    allComponentsController,deleteComponentController,updateComponentController,componentByIDController};
+    allComponentsController,deleteComponentController,updateComponentController,componentByIDController,
+    dispatchComponentController};

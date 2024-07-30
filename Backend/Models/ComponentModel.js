@@ -25,10 +25,12 @@ const ComponentSchema = new mongoose.Schema({
     },
     Dispatchednumber:{
         type:Number,
+        default:0,
         
     },
     BalanceItem:{
         type:Number,
+        default:0,
         
     },
     status:{

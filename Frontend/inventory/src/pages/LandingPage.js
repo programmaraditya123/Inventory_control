@@ -82,8 +82,8 @@ const LandingPage = () => {
       <td>{component?.Part}</td>
       <td>{new Date(component?.DateReceived).toLocaleDateString('es-CL')}/{component?.Receivednumber}</td>
       <td>{new Date(component?.DateDispatched).toLocaleDateString('es-CL')}/{component?.Dispatchednumber}</td>
-      <td>{component?.BalanceItem}</td>
-      <td>{component?.status}</td>
+      <td>{component?.Receivednumber-component?.Dispatchednumber}</td>
+      <td>{component?.Receivednumber===component?.Dispatchednumber?'Delivered':'Pending'}</td>
       <td><a href='#' download={`qr_${component._id}.png`} ><QRCode size={100} bgColor='white' fgColor='black' value={component._id}/></a></td>
       <td><Link to={`/edit/${component._id}`}>Edit</Link>/<Link onClick={() => {handleDelete(component._id)}}>delete</Link></td>
 

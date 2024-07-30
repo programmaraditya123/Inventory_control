@@ -1,5 +1,5 @@
 const express = require('express');
-const {homePageController,registerUserController, signinUserController, generateQrController, allComponentsController, deleteComponentController, updateComponentController, componentByIDController} = require('../Controllers/authController');
+const {homePageController,registerUserController, signinUserController, generateQrController, allComponentsController, deleteComponentController, updateComponentController, componentByIDController, dispatchComponentController} = require('../Controllers/authController');
 const IsSignIn = require('../Middlewares/IsSignIn');
 
 //router object
@@ -30,5 +30,9 @@ router.put('/update/:id',updateComponentController);
 
 //get component by id
 router.get('/getcomp/:id',componentByIDController);
+
+
+//dispatch component controller
+router.put('/dispatchcomp/:id',dispatchComponentController);
 
 module.exports = router;
