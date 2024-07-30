@@ -8,25 +8,23 @@ const ScanQr = () => {
   //const params = useParams();
   const navigate = useNavigate();
   const [scanResult, setScanResult] = useState(null);
-  const [Receivednumber,setReceivednumber] = useState(
-    //count:0,
-    //increment:() => setReceivednumber(prevState => ({...prevState, count:prevState.count+1}))
-  );
+  const [Receivednumber,setReceivednumber] = useState();
   const [DateDispatched,setDateDispatched] = useState(new Date().toLocaleDateString('en-CL'));
-  const [Dispatchednumber,setDispatchednumber] = useState(5);
+  const [Dispatchednumber,setDispatchednumber] = useState();
   const [BalanceItem,setBalanceItem] = useState(15);
   const [status,setStatus] = useState('Delivered');
   console.log(scanResult,"134567891234567899");
-  //console.log(Receivednumber,"1111111111111111111")
-  //console.log(Dispatchednumber,"222222222222222222222222")
+  // console.log(Receivednumber,"1111111111111111111")
+  // console.log(Dispatchednumber,"222222222222222222222222")
 
    
       const dispatchComponent = async (req,res) => {
       if(scanResult != null)
         {const {data} = await axios.put(`http://localhost:8080/app/v1/auth/dispatchcomp/${scanResult}`,{Receivednumber,DateDispatched,Dispatchednumber,BalanceItem,status});
-        console.log(data,"9999999999999999999")
-        setDispatchednumber(10)
-        console.log(Dispatchednumber,"1111111111111111111")
+        // setDispatchednumber(data.disp.Dispatchednumber);
+        // setReceivednumber(data.disp.Receivednumber);
+        // console.log(data.disp.Receivednumber,"9999999999999999999")
+        // console.log(data.disp.Dispatchednumber,"1111111111111111111222222222")
       if(data){
         alert("Data Dispatched Successfully");
         navigate("/")
@@ -58,6 +56,7 @@ const ScanQr = () => {
     };
 
     scanner.render(success, error);
+    
 
     return () => {
       // Clean up the scanner when the component unmounts
@@ -74,7 +73,8 @@ const ScanQr = () => {
   //   setReceivednumber(prevState => ({...prevState, count:prevState.count+1}))
   // },[])
 
-
+  //console.log(data.disp.Receivednumber,"9999999999999999999")
+  //console.log(data.disp.Dispatchednumber,"1111111111111111111222222222")
 
 
 

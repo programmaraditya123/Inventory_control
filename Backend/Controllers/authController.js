@@ -250,14 +250,16 @@ const dispatchComponentController = async (req, res) => {
     try {
         const {id} = req.params;
         const {Receivednumber,DateDispatched,Dispatchednumber,BalanceItem,status} = req.body;
-        const disp = await ComponentModel.findByIdAndUpdate({_id:id}, {
-            $set: { DateDispatched },
+        
+         const disp = await ComponentModel.findByIdAndUpdate({_id:id}, {
+            $set: { DateDispatched ,Receivednumber,BalanceItem,status},
             $inc: { Dispatchednumber: 1 }
           } ,{new:true})
         res.status(200).send({
             success:true,
             message:'Component Dispatched Successfully',
             disp
+            
         })
         
     } catch (error) {

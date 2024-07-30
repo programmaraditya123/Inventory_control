@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 //import logo from '../../public/images/logo.png';
 import axios from 'axios';
 import QRCode from "react-qr-code";
+import { CiEdit } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
 
 
 const LandingPage = () => {
@@ -85,7 +87,7 @@ const LandingPage = () => {
       <td>{component?.Receivednumber-component?.Dispatchednumber}</td>
       <td>{component?.Receivednumber===component?.Dispatchednumber?'Delivered':'Pending'}</td>
       <td><a href='#' download={`qr_${component._id}.png`} ><QRCode size={100} bgColor='white' fgColor='black' value={component._id}/></a></td>
-      <td><Link to={`/edit/${component._id}`}>Edit</Link>/<Link onClick={() => {handleDelete(component._id)}}>delete</Link></td>
+      <td><Link to={`/edit/${component._id}`}><CiEdit/></Link>/<Link onClick={() => {handleDelete(component._id)}}><MdDelete/></Link></td>
 
       </tr>))}
       
